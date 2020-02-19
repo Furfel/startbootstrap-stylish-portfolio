@@ -11,12 +11,8 @@
   //background-size: cover;
   
   @keyframes masthead-text-shadow {
-    0% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
-    30% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
-    40% { text-shadow: rgba($color: #000000, $alpha: 0.7) 0px 0px 0.3rem; top: 0px; left: 0px; }
-    50% { text-shadow: rgba($color: #000000, $alpha: 0.7) 0px 0px 0.3rem; top: 0px; left: 0px; }
-    60% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
-    100% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
+    0%, 30%, 60%, 100% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; color: #E5E5E5;}
+    40%, 50% { text-shadow: rgba($color: #000000, $alpha: 0.7) 0px 0px 0.3rem; top: 0px; left: 0px; color: #FFFFFF; }
   }
 
   h1 {
