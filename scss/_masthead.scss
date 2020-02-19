@@ -1,24 +1,36 @@
 .masthead {
-  min-height: 30rem;
   position: relative;
-  display: table;
+  display: block;
   width: 100%;
   height: auto;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-  background: linear-gradient(90deg, fade-out($white, 0.9) 0%, fade-out($white, 0.9) 100%), url('../img/bg-masthead.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  //background: linear-gradient(90deg, fade-out($white, 0.9) 0%, fade-out($white, 0.9) 100%), url('../img/duck-masthead.jpg');
+  //background-position: center center;
+  //background-repeat: no-repeat;
+  //background-size: cover;
+  
+  @keyframes masthead-text-shadow {
+    0% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
+    30% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
+    40% { text-shadow: rgba($color: #000000, $alpha: 0.7) 0px 0px 0.3rem; top: 0px; left: 0px; }
+    50% { text-shadow: rgba($color: #000000, $alpha: 0.7) 0px 0px 0.3rem; top: 0px; left: 0px; }
+    60% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
+    100% { text-shadow: rgba($color: #000000, $alpha: 0.9) $masthead-animation-offset $masthead-animation-offset 0.7rem; top: -$masthead-animation-offset; left: -$masthead-animation-offset; }
+  }
+
   h1 {
     font-size: 4rem;
-    margin: 0;
+    margin: 0 4rem;
     padding: 0;
+    color: #FFFFFF;
+    text-shadow: rgba($color: #000000, $alpha: 0.9) 0px 0px 0.7rem;
+    animation: none;
   }
   @media (min-width: 992px) {
-    height: 100vh;
     h1 {
       font-size: 5.5rem;
+      animation: 'masthead-text-shadow' 16s infinite;
     }
   }
 }

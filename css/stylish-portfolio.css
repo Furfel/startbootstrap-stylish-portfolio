@@ -1,6 +1,6 @@
 /*!
  * Start Bootstrap - Stylish Portfolio v5.0.7 (https://startbootstrap.com/template-overviews/stylish-portfolio)
- * Copyright 2013-2019 Start Bootstrap
+ * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-stylish-portfolio/blob/master/LICENSE)
  */
 
@@ -19,8 +19,8 @@ body {
 }
 
 .content-section {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .content-section-heading h2 {
@@ -86,31 +86,95 @@ h6 {
 }
 
 .masthead {
-  min-height: 30rem;
   position: relative;
-  display: table;
+  display: block;
   width: 100%;
   height: auto;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/bg-masthead.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@-webkit-keyframes masthead-text-shadow {
+  0% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+  30% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+  40% {
+    text-shadow: rgba(0, 0, 0, 0.7) 0px 0px 0.3rem;
+    top: 0px;
+    left: 0px;
+  }
+  50% {
+    text-shadow: rgba(0, 0, 0, 0.7) 0px 0px 0.3rem;
+    top: 0px;
+    left: 0px;
+  }
+  60% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+  100% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+}
+
+@keyframes masthead-text-shadow {
+  0% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+  30% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+  40% {
+    text-shadow: rgba(0, 0, 0, 0.7) 0px 0px 0.3rem;
+    top: 0px;
+    left: 0px;
+  }
+  50% {
+    text-shadow: rgba(0, 0, 0, 0.7) 0px 0px 0.3rem;
+    top: 0px;
+    left: 0px;
+  }
+  60% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+  100% {
+    text-shadow: rgba(0, 0, 0, 0.9) 0.5rem 0.5rem 0.7rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
 }
 
 .masthead h1 {
   font-size: 4rem;
-  margin: 0;
+  margin: 0 4rem;
   padding: 0;
+  color: #FFFFFF;
+  text-shadow: rgba(0, 0, 0, 0.9) 0px 0px 0.7rem;
+  -webkit-animation: none;
+  animation: none;
 }
 
 @media (min-width: 992px) {
-  .masthead {
-    height: 100vh;
-  }
   .masthead h1 {
     font-size: 5.5rem;
+    -webkit-animation: 'masthead-text-shadow' 16s infinite;
+    animation: 'masthead-text-shadow' 16s infinite;
   }
 }
 
