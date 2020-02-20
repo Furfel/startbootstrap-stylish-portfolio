@@ -15,6 +15,7 @@ const uglify = require("gulp-uglify");
 const template = require("gulp-template");
 const data = require("gulp-data");
 const fs = require("fs");
+const fspath = require("path");
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -111,8 +112,18 @@ function html() {
     .src("./*.html")
     .pipe(data(function(file) {
       var merged = {};
-      var menu = JSON.parse(fs.readFileSync("./menu.json"));
+
+      var menu = JSON.parse(fs.readFileSync("./json/_menu.json"));
       Object.keys(menu).forEach(k => merged[k] = menu[k]);
+
+      var template_json = "./json/" + fspath.basename(file.path) + ".json";
+      fs.exists(template_json, function(exists) {
+        if(exists) {
+          var template_data = JSON.parse(fs.readFileSync(template_json));
+          Object.keys(template_data).forEach(k => merged[k] = template_data[k]);
+        }
+      });
+      
       return merged;
     }))
     .pipe(template())
@@ -141,8 +152,9 @@ function js() {
 // Watch files
 function watchFiles() {
   gulp.watch("./scss/**/*", css);
-  gulp.watch("./js/**/*", js);
-  gulp.watch("./**/*.html", gulp.series(html, browserSyncReload));
+  gulp.watch(["./js/**/*", '!./build/**/*'], js);
+  gulp.watch("./*.html", gulp.series(html, browserSyncReload));
+  gulp.watch("./json/*.json", gulp.series(html, browserSyncReload));
 }
 
 // Define complex tasks
