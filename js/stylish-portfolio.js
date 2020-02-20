@@ -9,6 +9,16 @@
     $(this).toggleClass("active");
   });
 
+  var offsetTop = $("#menu-wrapper")[0].offsetTop;
+
+  $(window).on("scroll", function(e) {
+    if( this.window.pageYOffset >= offsetTop ) {
+      $("#menu-wrapper").addClass("sticky");
+    } else {
+      $("#menu-wrapper").removeClass("sticky");
+    }
+  });
+
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
