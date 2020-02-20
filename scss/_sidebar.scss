@@ -169,6 +169,8 @@
     @include menu-nav;
     width: 100%;
     display: flex;
+    max-width: 1440px;
+    margin: auto;
   }
 
   .menu-nav li > a {

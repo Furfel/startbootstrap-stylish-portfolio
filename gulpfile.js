@@ -16,6 +16,7 @@ const template = require("gulp-template");
 const data = require("gulp-data");
 const fs = require("fs");
 const fspath = require("path");
+const fileinc = require("gulp-file-include");
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -78,7 +79,10 @@ function modules() {
     .pipe(gulp.dest(dest_build + 'vendor/simple-line-icons/fonts'));
   var simpleLineIconsCSS = gulp.src('./node_modules/simple-line-icons/css/**')
     .pipe(gulp.dest(dest_build + 'vendor/simple-line-icons/css'));
-  return merge(bootstrap, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCSS);
+
+  var img = gulp.src('./img/**/*').pipe(gulp.dest(dest_build + 'img'));
+  
+  return merge(bootstrap, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCSS, img);
 }
 
 // CSS task
@@ -106,27 +110,43 @@ function css() {
     .pipe(browsersync.stream());
 }
 
+//Tempaltes to HTML task
+function tpl2html() {
+  return gulp
+    .src("./templates/*.html")
+    .pipe(
+      data(
+        function(file) {
+          var merged = {};
+
+          var template_json = "./templates/" + fspath.basename(file.path.replace('\.html', '')) + ".json";
+          try {
+            fs.accessSync(template_json, fs.constants.F_OK);
+          } catch(e) {
+            return merged;
+          }
+          var template_data = JSON.parse(fs.readFileSync(template_json));
+          Object.keys(template_data).forEach(k => merged[k] = template_data[k]);
+        
+          return merged;
+        }
+      )
+    )
+    .pipe(template())
+    .pipe(gulp.dest("./html/"));
+}
+
 //HTML task
 function html() {
   return gulp
     .src("./*.html")
-    .pipe(data(function(file) {
-      var merged = {};
-
-      var menu = JSON.parse(fs.readFileSync("./json/_menu.json"));
-      Object.keys(menu).forEach(k => merged[k] = menu[k]);
-
-      var template_json = "./json/" + fspath.basename(file.path) + ".json";
-      fs.exists(template_json, function(exists) {
-        if(exists) {
-          var template_data = JSON.parse(fs.readFileSync(template_json));
-          Object.keys(template_data).forEach(k => merged[k] = template_data[k]);
-        }
-      });
-      
-      return merged;
+    .pipe(fileinc({
+      prefix: '@@',
+      basepath: '@root',
+      context: {
+        content: ''
+      }
     }))
-    .pipe(template())
     .pipe(gulp.dest(dest_build))
     .pipe(browsersync.stream());
 }
@@ -153,13 +173,13 @@ function js() {
 function watchFiles() {
   gulp.watch("./scss/**/*", css);
   gulp.watch(["./js/**/*", '!./build/**/*'], js);
-  gulp.watch("./*.html", gulp.series(html, browserSyncReload));
-  gulp.watch("./json/*.json", gulp.series(html, browserSyncReload));
+  gulp.watch(["./*.html", "./html/*.html"], gulp.series(html, browserSyncReload));
+  gulp.watch("./templates/*", tpl2html);
 }
 
 // Define complex tasks
 const vendor = gulp.series(clean, modules);
-const build = gulp.series(vendor, gulp.parallel(html, css, js));
+const build = gulp.series(vendor, tpl2html, gulp.parallel(html, css, js));
 const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 
 // Export tasks

@@ -1,6 +1,6 @@
 {
     "menu": [
-        {"icon": "fa-dice", "label": "Test", "href": "#test"},
+        {"icon": "fa-dice", "label": "Games", "href": "/games.html"},
         {"icon": "fa-carrot", "label": "Test2", "href": "#test2"}
     ]
 }
