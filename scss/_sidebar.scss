@@ -4,79 +4,18 @@
   background: $primary;
 }
 
-#sidebar-wrapper {
-  @include menu-wrapper;
-  position: fixed;
-  z-index: 2;
-  right: 0;
-  width: 250px;
-  height: 100%;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-  transform: translateX(250px);
-  border-left: 1px solid fade-out($white, 0.9);
-  display: block;
-}
-
-#topbar-wrapper {
-  @include menu-wrapper;
-  width: 100%;
-  height: 90px;
-  display: none;
-}
-
 @mixin menu-nav {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.sidebar-nav {
-  @include menu-nav;
-  position: absolute;
-  top: 0;
-  width: 250px;
-}
-
-.topbar-nav {
-  @include menu-nav;
-  width: 100%;
-}
-
-.sidebar-nav li {
-}
-
 @mixin menu-nav-item-a {
   text-decoration: none;
   color: $white;
-  padding: 15px;
 }
 
-.sidebar-nav li.sidebar-nav-item a {
-  display: block;
-  @include menu-nav-item-a;
-}
-
-@mixin menu-nav-li-a {
-  &:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(255, 255, 255, .2);
-  }
-
-  &:active, &:focus {
-    text-decoration: none;
-  }
-}
-
-.sidebar-nav li a {
-  @include menu-nav-li-a;
-}
-
-@mixin menu-nav-brand {
+.menu-nav > .menu-brand {
   & {
     font-size: 1.2rem;
     background: fade-out($gray-800, .9);
@@ -90,25 +29,6 @@
       background: none;
     }
   }
-}
-
-.sidebar-nav > .sidebar-brand {
-  @include menu-nav-brand;
-  height: 80px;
-  line-height: 50px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 15px;
-}
-
-#sidebar-wrapper.active {
-  right: 250px;
-  width: 250px;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 }
 
 .menu-toggle {
@@ -140,21 +60,120 @@
   }
 }
 
-#sidebar-menu-toggle {
-  display: inline;
+.menu-nav li a {
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, .2);
+  }
+
+  &:active, &:focus {
+    text-decoration: none;
+  }
 }
 
+//Sidebar
+@media (max-width: 991px) {
+  #sidebar-menu-toggle {
+    display: inline;
+  }
+
+  .menu-nav li.menu-nav-item a {
+    display: block;
+    @include menu-nav-item-a;
+    padding: 15px;
+  }
+
+  #menu-wrapper {
+    @include menu-wrapper;
+    position: fixed;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    transform: translateX(250px);
+    border-left: 1px solid fade-out($white, 0.9);
+    display: block;
+  }
+
+  .menu-nav {
+    @include menu-nav;
+    position: absolute;
+    top: 0;
+    width: 250px;
+  }
+
+  .menu-nav > .menu-brand {
+    height: 80px;
+    line-height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+  }
+
+  .menu-nav li {
+    display: block;
+  }
+
+  #menu-wrapper.active {
+    right: 250px;
+    width: 250px;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+  }
+
+}
+
+//Topbar
 @media (min-width: 992px) {
   #sidebar-menu-toggle {
     display: none;
   }
 
-  #sidebar-wrapper {
-    display: none;
+  #menu-wrapper {
+    @include menu-wrapper;
+    width: 100%;
+    height: 60px;
+    display: block;
+    padding: 0px;
+    margin: 0px;
   }
 
-  #topbar-wrapper {
-    display: block;
+  .menu-nav {
+    @include menu-nav;
+    width: 100%;
+    display: flex;
+  }
+
+  .menu-nav li > a {
+    display: inline-block;
+    line-height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    @include menu-nav-item-a;
+  }
+
+  .menu-nav > li {
+    display: inline-block;
+    height: 60px;
+    flex: 1;
+    line-height: 40px;
+  }
+
+  #menu-wrapper.active {
+    width: 100%;
+    right: 0px;
   }
 
 }
