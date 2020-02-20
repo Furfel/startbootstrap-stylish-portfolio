@@ -41,20 +41,9 @@
   <nav id="menu-wrapper">
     <ul class="menu-nav">
       <li class="menu-brand">
-        <a class="js-scroll-trigger" href="#page-top">Home</a>
+        <a class="js-scroll-trigger" href="/">Home</a>
       </li>
-      <li class="menu-nav-item">
-          <a class="js-scroll-trigger" href="#about">About</a>
-      </li>
-      <li class="menu-nav-item">
-          <a class="js-scroll-trigger" href="#services">Services</a>
-      </li>
-      <li class="menu-nav-item">
-        <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
-      </li>
-      <li class="menu-nav-item">
-        <a class="js-scroll-trigger" href="#contact">Contact</a>
-      </li>
+      <% _.forEach(menu, function(i) { %><li class="menu-nav-item"><a class="js-scroll-trigger" href="<%- i.href %>"><%- i.label %></a></li> <% }); %>
     </ul>
   </nav>
 

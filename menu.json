@@ -1,0 +1,6 @@
+{
+    "menu": [
+        {"label": "Test", "href": "#test"},
+        {"label": "Test2", "href": "#test2"}
+    ]
+}
