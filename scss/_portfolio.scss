@@ -15,14 +15,14 @@
     z-index: 1;
     .caption-content {
       color: $white;
-      margin: auto 2rem 2rem;
+      margin: auto 1rem 1rem;
       h2 {
-        font-size: 0.8rem;
+        font-size: 1.3rem;
         text-transform: uppercase;
       }
       p {
         font-weight: 300;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
       }
     }
   }
@@ -35,9 +35,9 @@
       clip-path: inset(0px);
       .caption-content {
         transition: opacity 0.25s;
-        margin-left: 5rem;
-        margin-right: 5rem;
-        margin-bottom: 5rem;
+        margin-left: 3.0rem;
+        margin-right: 3.0rem;
+        margin-bottom: 3.0rem;
       }
     }
     img {
@@ -47,13 +47,13 @@
     }
     &:hover {
       img {
-        -webkit-clip-path: inset(2rem);
-        clip-path: inset(2rem);
+        -webkit-clip-path: inset(1.5rem);
+        clip-path: inset(1.5rem);
       }
       .caption {
         background-color: fade-out($primary, 0.1);
-        -webkit-clip-path: inset(2rem);
-        clip-path: inset(2rem);
+        -webkit-clip-path: inset(1.5rem);
+        clip-path: inset(1.5rem);
       }
     }
   }
