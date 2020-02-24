@@ -33,11 +33,29 @@
     }
   });
 
+  $(window).on('popstate', function(event) {
+    var state = window.history.state;
+    if( state == null || state == undefined )
+      this.window.location = "/";
+    else {
+      reload_content(state["content-src"], state["postload"]);
+    }
+  });
+
   // Closes responsive menu when a scroll trigger link is clicked
   $('#menu-wrapper .js-scroll-trigger').click(function() {
     $("#menu-wrapper").removeClass("active");
     $(".menu-toggle").removeClass("active");
     $(".menu-toggle > .fa-bars, .menu-toggle > .fa-times").toggleClass("fa-bars fa-times");
+
+    var content_src = $(this).attr("content-src");
+    var postload = $(this).attr("postload");
+    var href = $(this).attr("href");
+
+    window.history.pushState({"content-src": content_src, "href": href, "postload": postload}, href, href);
+
+    return reload_content(content_src, postload);
+
   });
 
   // Scroll to top button appear
@@ -72,3 +90,44 @@ var onMapClickHandler = function(event) {
 }
 // Enable map zooming with mouse scroll when the user clicks the map
 $('.map').on('click', onMapClickHandler);
+
+var prepareGamesContent = function(target) {
+  $("#content").find(".game-link").click(function() {
+    var content_src = $(this).attr("content-src");
+    //var postload = $(this).attr("postload");
+    var href = $(this).attr("href");
+
+    window.history.pushState({"content-src": content_src, "href": href, "postload": ""}, href, href);
+
+    return reload_content(content_src, "");
+  });
+}
+
+function reload_content(content_src, postload) {
+  if( content_src != undefined && content_src != null && content_src != "" ) {
+    var spinner = $("<div>").addClass("lds-ellipsis");
+    $("#content").empty();
+    $("#content").append(spinner);
+    var postload = postload;
+
+    $.get(content_src, function(data) {
+        $("#content").html(data);
+        if( postload != null && postload != undefined && postload != "" && (typeof window[postload]) == "function" ) {
+          window[postload]();
+        }
+      }).fail(function() {
+
+        var h2fail = $("<h2>").addClass("failure").html("Failed to load");
+        
+        var buttonretry = $("<button>").addClass("btn btn-primary").html("Retry")
+          .on("click", function(e){
+            reload_content(content_src, postload);
+          });
+        
+        $("#content").append(h2fail).append(buttonretry);
+
+      });
+    return false;
+  }
+  return true;
+}

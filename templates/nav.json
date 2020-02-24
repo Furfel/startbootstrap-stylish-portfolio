@@ -1,6 +1,7 @@
 {
     "menu": [
-        {"icon": "fa-dice", "label": "Games", "href": "/games.html"},
-        {"icon": "fa-carrot", "label": "Test2", "href": "#test2"}
+        {"icon": "fa-dice", "label": "Games", "href": "/games.html", "content-src": "/html/gamescontent.html", "postload": "prepareGamesContent" },
+        {"icon": "fa-carrot", "label": "Carrots", "href": "/carrot.html", "content-src": "/html/carrotcontent.html", "postload": "" },
+        {"icon": "fa-carrot", "label": "Carrots2", "href": "/carrot2.html", "content-src": "/html/carrotcontent2.html", "postload": "" }
     ]
 }

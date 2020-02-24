@@ -133,7 +133,8 @@ function tpl2html() {
       )
     )
     .pipe(template())
-    .pipe(gulp.dest("./html/"));
+    .pipe(gulp.dest("./html/"))
+    .pipe(gulp.dest( dest_build + "html/" ));
 }
 
 //HTML task
