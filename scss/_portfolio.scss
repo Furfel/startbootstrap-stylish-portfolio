@@ -21,8 +21,8 @@
         text-transform: uppercase;
       }
       p {
-        font-weight: 300;
-        font-size: 0.9rem;
+        font-weight: 400;
+        font-size: 1.1rem;
       }
     }
   }
@@ -33,6 +33,7 @@
       -webkit-transition: -webkit-clip-path 0.25s ease-out, background-color 0.7s;
       -webkit-clip-path: inset(0px);
       clip-path: inset(0px);
+      transition: clip-path 0.25s ease-out, background-color 0.7s;
       .caption-content {
         transition: opacity 0.25s;
         margin-left: 3.0rem;
@@ -44,6 +45,7 @@
       -webkit-transition: -webkit-clip-path 0.25s ease-out;
       -webkit-clip-path: inset(-1px);
       clip-path: inset(-1px);
+      transition: clip-path 0.25s ease-out;
     }
     &:hover {
       img {
@@ -51,7 +53,7 @@
         clip-path: inset(1.5rem);
       }
       .caption {
-        background-color: fade-out($primary, 0.1);
+        background-color: fade-out($primary, 0.3);
         -webkit-clip-path: inset(1.5rem);
         clip-path: inset(1.5rem);
       }
